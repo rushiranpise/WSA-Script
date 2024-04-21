@@ -60,7 +60,7 @@ jobs:
   build:
     name: Build WSA
     runs-on: ubuntu-latest
-    if: github.event.repository.fork == false
+    if: github.event.repository.fork == true
     steps:
       - name: Checkout ♻️
         uses: actions/checkout@v4
