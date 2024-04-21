@@ -14,7 +14,7 @@ on:
         description: WSA Release Channel
         required: true
         options: ["Retail","Release Preview","Insider Slow","Insider Fast","Insider Private"]
-        default: "Retail"
+        default: "Release Preview"
       user_code:
         type: string
         description: User code for WSA Insider User (Optional)
@@ -31,7 +31,7 @@ on:
         description: Root solution
         required: true
         options: ["Non-root","KernelSU","Magisk Official","Magisk Alpha (vvb2060)","Magisk Delta (HuskyDG)"]
-        default: "Magisk Official"
+        default: "KernelSU"
       magisk_channel:
         type: choice
         description: Magisk channel
@@ -42,7 +42,7 @@ on:
         type: choice
         description: Custom model
         required: true
-        options: ["WSA Default", "Pixel 4a", "Pixel 4a (5G)", "Pixel 5", "Pixel 5a", "Pixel 6", "Pixel 6 Pro", "Pixel 6a", "Pixel 7", "Pixel 7 Pro", "Pixel 7a", "Pixel Tablet", "Pixel Fold"]
+        options: ["WSA Default", "Pixel XL", "Pixel 4a", "Pixel 4a (5G)", "Pixel 5", "Pixel 5a", "Pixel 6", "Pixel 6 Pro", "Pixel 6a", "Pixel 7", "Pixel 7 Pro", "Pixel 7a", "Pixel 8", "Pixel 8 Pro", "Pixel Tablet", "Pixel Fold"]
         default: "Pixel 5"
       compression:
         type: choice
@@ -96,7 +96,7 @@ jobs:
       - name: Build WSA 🏗️
         id: wsa
         run: |
-          declare -A opts=( ["RELEASE_TYPE,Retail"]="retail" ["RELEASE_TYPE,Release Preview"]="RP" ["RELEASE_TYPE,Insider Slow"]="WIS" ["RELEASE_TYPE,Insider Fast"]="WIF" ["RELEASE_TYPE,Insider Private"]="latest" ["ROOT_SOL,Magisk Official"]="topjohnwu" ["ROOT_SOL,Magisk Delta (HuskyDG)"]="HuskyDG" ["ROOT_SOL,Magisk Alpha (vvb2060)"]="vvb2060" ["ROOT_SOL,KernelSU"]="kernelsu" ["ROOT_SOL,Non-root"]="none" ["MAGISK_TYPE,Magisk Stable"]="stable" ["MAGISK_TYPE,Magisk Beta"]="beta" ["MAGISK_TYPE,Magisk Canary"]="canary" ["MAGISK_TYPE,Magisk Debug"]="debug" ["CUSTOM_MODEL,WSA Default"]="none" ["CUSTOM_MODEL,Pixel 4a"]="sunfish" ["CUSTOM_MODEL,Pixel 4a (5G)"]="bramble" ["CUSTOM_MODEL,Pixel 5"]="redfin" ["CUSTOM_MODEL,Pixel 5a"]="barbet" ["CUSTOM_MODEL,Pixel 6 Pro"]="raven" ["CUSTOM_MODEL,Pixel 6"]="oriole" ["CUSTOM_MODEL,Pixel 6a"]="bluejay" ["CUSTOM_MODEL,Pixel 7"]="panther" ["CUSTOM_MODEL,Pixel 7 Pro"]="cheetah" ["CUSTOM_MODEL,Pixel 7a"]="lynx" ["CUSTOM_MODEL,Pixel Tablet"]="tangorpro" ["CUSTOM_MODEL,Pixel Fold"]="felix" ["GAPPS_BRAND,MindTheGapps v13.0"]="--install-gapps" )
+          declare -A opts=( ["RELEASE_TYPE,Retail"]="retail" ["RELEASE_TYPE,Release Preview"]="RP" ["RELEASE_TYPE,Insider Slow"]="WIS" ["RELEASE_TYPE,Insider Fast"]="WIF" ["RELEASE_TYPE,Insider Private"]="latest" ["ROOT_SOL,Magisk Official"]="topjohnwu" ["ROOT_SOL,Magisk Delta (HuskyDG)"]="HuskyDG" ["ROOT_SOL,Magisk Alpha (vvb2060)"]="vvb2060" ["ROOT_SOL,KernelSU"]="kernelsu" ["ROOT_SOL,Non-root"]="none" ["MAGISK_TYPE,Magisk Stable"]="stable" ["MAGISK_TYPE,Magisk Beta"]="beta" ["MAGISK_TYPE,Magisk Canary"]="canary" ["MAGISK_TYPE,Magisk Debug"]="debug" ["CUSTOM_MODEL,WSA Default"]="none" ["CUSTOM_MODEL,Pixel XL"]="marlin" ["CUSTOM_MODEL,Pixel 4a"]="sunfish" ["CUSTOM_MODEL,Pixel 4a (5G)"]="bramble" ["CUSTOM_MODEL,Pixel 5"]="redfin" ["CUSTOM_MODEL,Pixel 5a"]="barbet" ["CUSTOM_MODEL,Pixel 6 Pro"]="raven" ["CUSTOM_MODEL,Pixel 6"]="oriole" ["CUSTOM_MODEL,Pixel 6a"]="bluejay" ["CUSTOM_MODEL,Pixel 7"]="panther" ["CUSTOM_MODEL,Pixel 7 Pro"]="cheetah" ["CUSTOM_MODEL,Pixel 7a"]="lynx" ["CUSTOM_MODEL,Pixel 8"]="shiba" ["CUSTOM_MODEL,Pixel 8 Pro"]="husky" ["CUSTOM_MODEL,Pixel Tablet"]="tangorpro" ["CUSTOM_MODEL,Pixel Fold"]="felix" ["GAPPS_BRAND,MindTheGapps v13.0"]="--install-gapps" )
 
           if [[ "${{ inputs.root_sol }}" == *Magisk* ]]; then
               MAGISK_BRANCH="${opts[ROOT_SOL,${{ inputs.root_sol }}]}"
